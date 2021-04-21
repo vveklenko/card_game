@@ -1,0 +1,293 @@
+*,
+::after,
+::before {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial;
+    background: url(../img/game-bg.jpeg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+}
+
+.my-field, .enemy-field {
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    left: 30px;
+    height: 250px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.enemy-field {
+    top: 0;
+}
+
+.player-info,
+.enemy-player-info {
+    position: relative;
+    top: -30%;
+    width: 150px;
+    left: 0;
+}
+
+.enemy-player-info {
+    top: auto;
+    bottom: -30%;
+    right: 0;
+}
+
+.main-health,
+.enemy-main-health {
+    background-image: url(../icons/heart.svg);
+    background-size: 100%;
+    width: 60px;
+    height: 60px;
+    margin: 10px 0 0 10px;
+    position: absolute;
+    right: -20px;
+    top: -20px;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 900;
+    font-size: 18px;
+    padding-bottom: 5px;
+    z-index: 2;
+}
+
+.my-avatar,
+.enemy-avatar {
+    position: absolute;
+    width: 150px;
+    border-radius: 30%;
+    background-color: rgb(160, 160, 160);
+    border: 10px solid rgb(14, 12, 41);
+}
+
+.enemy-avatar.active,
+.my-avatar.active {
+    animation-name: blinker-avatar;
+    animation-iteration-count: infinite;
+    animation-timing-function: cubic-bezier(1.0,0,0,1.0);
+    animation-duration: 2s;
+    cursor: pointer;
+}
+
+.enemy-info,
+.my-info {
+    margin-left: -120px;
+    margin-top: 230px;
+    color: rgb(217, 222, 228);
+    text-align: left;
+}
+
+.my-info {
+    margin-top: 100px;
+}
+
+.username {
+    font-size: 30px;
+    margin-bottom: 10px;
+}
+
+.stones {
+    font-size: 30px;
+    font-weight: 700;
+}
+
+.stones span {
+    font-weight: 900;
+}
+
+.my-cards-list {
+    position: relative;
+    top: -40%;
+    padding-left: 20%;
+    display: flex;
+    margin-right: auto;
+}
+
+.enemy-cards-list {
+    position: relative;
+    bottom: -40%;
+    padding-left: 20%;
+    display: flex;
+    margin-right: auto;
+}
+
+.card {
+    width: 240px;
+    height: 330px;
+    position: relative;
+    border-radius: 15px;
+    border: 3px solid rgb(14, 12, 41);
+    margin: 0 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
+}
+
+.card.active {
+    animation-name: blinker;
+    animation-iteration-count: infinite;
+    animation-timing-function: cubic-bezier(1.0,0,0,1.0);
+    animation-duration: 2s;
+    cursor: pointer;
+}
+
+@keyframes blinker {
+    from { border-color: rgb(146, 255, 73); }
+    to { border-color: rgb(14, 12, 41); }
+}
+
+@keyframes blinker-avatar {
+    from {
+        box-shadow: 0px 0px 14px 10px rgba(39, 255, 111, 0.76);
+        border-color: rgb(95, 211, 85);
+    }
+    to {
+        box-shadow: none
+    }
+}
+
+.card.selected {
+    cursor: pointer;
+    border-color: rgba(73, 255, 82, 0.747);
+    box-shadow: 0px 0px 37px 19px rgba(240, 169, 0, 0.25);
+}
+
+.card-bg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+.card-info {
+    margin-top: auto;
+    margin-left: auto;
+}
+
+.card-info img {
+    width: 25px;
+    margin-right: 10px;
+}
+
+.card-title {
+    height: 40px;
+    background-color: rgb(113, 152, 236);
+    border-radius: 0 0 12px 12px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 25px;
+    color: rgb(255, 255, 255);
+}
+
+.card-info {
+    display: flex;
+    width: 100%;
+}
+
+.card-attack,
+.card-health,
+.card-price {
+    height: 40px;
+    width: 80px;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.results-modal {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.637);
+    position: fixed;
+    left: 0;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: none;
+    z-index: 100;
+}
+
+.results-modal form {
+    width: 600px;
+    height: 320px;
+    background-color: rgb(69, 88, 173);
+    border-radius: 20px;
+}
+
+.form-info {
+    background: rgb(14, 12, 41);
+    height: 120px;
+    border-radius: 18px 18px 0 0;
+    text-transform: uppercase;
+    font-size: 50px;
+    font-weight: 900;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.submit-btn {
+    width: 370px;
+    height: 150px;
+    margin: 20px auto;
+    display: block;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    border-radius: 30px;
+    background-color: rgba(218, 230, 245, 0.658);
+    font-size: 32px;
+    color: #fff;
+    font-weight: 900;
+}
+
+.time {
+    position: fixed;
+    left: 0;
+    top: 50%;
+    width: 150px;
+    height: 100px;
+    padding-top: 10px;
+    background-color: rgb(113, 152, 236);
+    font-size: 70px;
+    text-align: center;
+    color: #fff;
+    font-weight: 900;
+    transform: translateY(-50%);
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+.start-alert {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 50%;
+    height: auto;
+}
